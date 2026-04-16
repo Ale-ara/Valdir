@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Comprovante</title>
+
+<style>
+body {
+  font-family: monospace;
+  width: 100%;
+  max-width: 300px; /* ideal pra 80mm */
+  margin: 0 auto;
+}
+
+.center {
+  text-align: center;
+}
+
+hr {
+  border: none;
+  border-top: 1px dashed black;
+  margin: 8px 0;
+}
+
+.linha {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input {
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.big {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+button {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 5px;
+}
+
+@page {
+  margin: 0;
+}
+
+@media print {
+  input, button {
+    display: none;
+  }
+
+  body {
+    margin: 0;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- INPUTS -->
+<input class="input" placeholder="Número do Ticket" oninput="update('ticket', this.value)">
+<input class="input" placeholder="Material (ex: Papelão)" oninput="update('material', this.value)">
+<input class="input" type="number" placeholder="Peso (kg)" oninput="update('peso', this.value)">
+
+<button onclick="window.print()">🖨️ Imprimir</button>
+
+<hr>
+
+<!-- CUPOM -->
+<div>
+
+<div class="center">
+<b>COOP BELFORD</b><br>
+CNPJ: 53.341.341/0001-97<br>
+EMAIL: contato.coop@belford.gmail.com<br>
+RUA PITOLUMEU - JARDIM GLAUCIA<br>
+BELFORD ROXO - RJ
+</div>
+
+<hr>
+
+<div class="center"><b>COMPROVANTE</b></div>
+
+<hr>
+
+<div class="linha">
+  <span>Ticket:</span>
+  <span id="ticket"></span>
+</div>
+
+<div class="linha">
+  <span>Data:</span>
+  <span id="data"></span>
+</div>
+
+<hr>
+
+<div>Cliente:</div>
+<div><b>SEMUSP PMBR</b></div>
+
+<hr>
+
+<div class="linha">
+  <span>Material:</span>
+  <span id="material">PAPELÃO</span>
+</div>
+
+<div class="linha">
+  <span>Placa:</span>
+  <span>TUB2A85</span>
+</div>
+
+<div class="linha">
+  <span>Motorista:</span>
+  <span>Luís Cláudio</span>
+</div>
+
+<hr>
+
+<div class="linha">
+  <span>Peso:</span>
+  <span id="peso">0</span> kg
+</div>
+
+<hr>
+
+<div class="center">TOTAL</div>
+
+<div class="big">
+  <span id="peso_total">0</span> kg
+</div>
+
+<hr>
+
+Observação:<br><br>
+
+Declaro que o material foi recebido.
+
+<br><br>
+
+_________________________<br>
+ASSINATURA
+
+</div>
+
+<script>
+// data automática
+document.getElementById("data").innerText = new Date().toLocaleString();
+
+// atualização em tempo real
+function update(campo, valor) {
+  document.getElementById(campo).innerText = valor;
+
+  if (campo === "peso") {
+    document.getElementById("peso_total").innerText = valor;
+  }
+}
+</script>
+
+</body>
+</html>
