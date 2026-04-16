@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>COOP BELFORD</title>
+
+<style>
+body {
+  font-family: monospace;
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* FORMULÁRIO */
+.form {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  width: 250px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.form h3 {
+  margin-top: 0;
+}
+
+.form input {
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* CUPOM */
+.cupom {
+  width: 280px;
+  background: white;
+  padding: 10px;
+  border: 1px dashed #000;
+}
+
+.center {
+  text-align: center;
+}
+
+hr {
+  border: none;
+  border-top: 1px dashed #000;
+  margin: 6px 0;
+}
+
+.linha {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+/* IMPRESSÃO */
+@media print {
+  body {
+    background: none;
+  }
+
+  .form {
+    display: none;
+  }
+
+  .cupom {
+    border: none;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- FORMULÁRIO -->
+<div class="form">
+  <h3>Preencher</h3>
+
+  <input type="text" placeholder="Cliente" oninput="update('cliente', this.value)">
+  <input type="text" placeholder="Resíduo" oninput="update('residuo', this.value)">
+  <input type="text" placeholder="Placa" oninput="update('placa', this.value)">
+  <input type="text" placeholder="Motorista" oninput="update('motorista', this.value)">
+  
+  <input type="time" oninput="update('entrada', this.value)">
+  <input type="time" oninput="update('saida', this.value)">
+  <input type="number" placeholder="Peso" oninput="update('peso', this.value)">
+
+  <button onclick="window.print()">🖨️ Imprimir</button>
+</div>
+
+<!-- CUPOM -->
+<div class="cupom">
+
+<div class="center bold">
+  COOP BELFORD<br>
+</div>
+
+<div class="center">
+  CNPJ: 53.341.341/0001-97<br>
+  EMAIL: contato.coop@belford.gmail.com<br>
+  RUA PITOLUMEI - JARDIM GLAUCIA<br>
+  BELFORD ROXO - RJ
+</div>
+
+<hr>
+
+<div class="center bold">
+  COMPROVANTE DE RECEBIMENTO
+</div>
+
+<hr>
+
+<div class="linha">
+  <span>TICKET:</span>
+  <span id="ticket"></span>
+</div>
+
+<div class="linha">
+  <span>DATA:</span>
+  <span id="data"></span>
+</div>
+
+<hr>
+
+<div>CLIENTE: <span id="cliente"></span></div>
+<div>RESÍDUO: <span id="residuo"></span></div>
+<div>PLACA: <span id="placa"></span></div>
+<div>MOTORISTA: <span id="motorista"></span></div>
+
+<hr>
+
+<div class="linha">
+  <span>ENTRADA:</span>
+  <span id="entrada"></span>
+</div>
+
+<div class="linha">
+  <span>SAÍDA:</span>
+  <span id="saida"></span>
+</div>
+
+<hr>
+
+<div class="center bold">
+  PESO LÍQUIDO: <span id="peso"></span> kg
+</div>
+
+<br><br>
+
+ASSINATURA: ______________________
+
+</div>
+
+<script>
+// número automático
+let contador = 1;
+
+document.getElementById("ticket").innerText = "COOP" + String(contador).padStart(4, '0');
+
+// data automática
+document.getElementById("data").innerText = new Date().toLocaleString();
+
+// atualização em tempo real
+function update(campo, valor) {
+  document.getElementById(campo).innerText = valor;
+}
+</script>
+
+</body>
+</html>
