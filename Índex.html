@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Comprovante - COOP BELFORD</title>
+
+<style>
+body {
+  font-family: monospace;
+  width: 280px;
+  margin: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+hr {
+  border-top: 1px dashed black;
+  margin: 5px 0;
+}
+
+input {
+  width: 95%;
+  margin-bottom: 5px;
+}
+
+button {
+  width: 100%;
+  margin-top: 5px;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- FORMULÁRIO -->
+<div id="formulario">
+  <h4>Preencher</h4>
+
+  <input type="text" id="cliente" placeholder="Cliente">
+  <input type="text" id="residuo" placeholder="Resíduo">
+  <input type="text" id="placa" placeholder="Placa">
+  <input type="text" id="motorista" placeholder="Motorista">
+  <input type="time" id="entrada">
+  <input type="time" id="saida">
+  <input type="number" id="peso" placeholder="Peso Líquido">
+
+  <button onclick="gerar()">Gerar Comprovante</button>
+  <button onclick="window.print()">🖨️ Imprimir</button>
+</div>
+
+<hr>
+
+<!-- CUPOM -->
+<div id="cupom">
+
+<div class="center">
+<b>COOP BELFORD</b><br>
+CNPJ: 53.341.341/0001-97<br>
+EMAIL: contato.coop@belford.gmail.com<br>
+RUA PITOLUMEI - JARDIM GLAUCIA<br>
+BELFORD ROXO - RJ
+</div>
+
+<hr>
+
+<b>COMPROVANTE DE RECEBIMENTO</b>
+
+<hr>
+
+TICKET: <span id="ticket"></span><br>
+DATA: <span id="data"></span><br>
+
+<hr>
+
+CLIENTE: <span id="c_cliente"></span><br>
+RESÍDUO: <span id="c_residuo"></span><br>
+PLACA: <span id="c_placa"></span><br>
+MOTORISTA: <span id="c_motorista"></span><br>
+
+<hr>
+
+ENTRADA: <span id="c_entrada"></span><br>
+SAÍDA: <span id="c_saida"></span><br>
+
+<hr>
+
+<b>PESO LÍQUIDO: <span id="c_peso"></span> kg</b>
+
+<br><br>
+
+ASSINATURA: ______________________
+
+</div>
+
+<script>
+let contador = 1;
+
+function gerar() {
+
+  let cliente = document.getElementById("cliente").value;
+  let residuo = document.getElementById("residuo").value;
+  let placa = document.getElementById("placa").value;
+  let motorista = document.getElementById("motorista").value;
+  let entrada = document.getElementById("entrada").value;
+  let saida = document.getElementById("saida").value;
+  let peso = document.getElementById("peso").value;
+
+  // Número tipo COOP0001
+  let ticket = "COOP" + String(contador).padStart(4, '0');
+  contador++;
+
+  let data = new Date().toLocaleString();
+
+  document.getElementById("ticket").innerText = ticket;
+  document.getElementById("data").innerText = data;
+
+  document.getElementById("c_cliente").innerText = cliente;
+  document.getElementById("c_residuo").innerText = residuo;
+  document.getElementById("c_placa").innerText = placa;
+  document.getElementById("c_motorista").innerText = motorista;
+
+  document.getElementById("c_entrada").innerText = entrada;
+  document.getElementById("c_saida").innerText = saida;
+  document.getElementById("c_peso").innerText = peso;
+
+}
+</script>
+
+</body>
+</html>
